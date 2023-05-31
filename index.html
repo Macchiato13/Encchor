@@ -53,18 +53,14 @@
         <textarea id="outputBox" placeholder="Output will appear here" readonly></textarea>
     </div>
 
-   <script>
+    <script>
         // Your encryption algorithm logic goes here
         function encrypt(text) {
-            var words = text.split(/\b/);
+            var words = text.split(' ');
             var encryptedWords = words.map(function (word) {
-                if (word.match(/^\w+$/)) {
-                    return wordToEncrypted(word);
-                } else {
-                    return word;
-                }
+                return wordToEncrypted(word);
             });
-            return encryptedWords.join('');
+            return encryptedWords.join(' ');
         }
 
         function wordToEncrypted(word) {
@@ -127,7 +123,14 @@
                 // Add more rules for other characters
             };
 
-            var encryptedWord = rules[word] || word;
+            var encryptedWord = word;
+
+            for (var key in rules) {
+                if (word.indexOf(key) > -1) {
+                    encryptedWord = encryptedWord.replace(new RegExp(key, 'g'), rules[key]);
+                }
+            }
+
             return encryptedWord;
         }
 
