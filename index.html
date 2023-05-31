@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #title {
+            font-size: 64px;
+            margin-bottom: 1.5em;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 1.5em;
+        }
+
+        #inputBox, #outputBox {
+            width: 50%;
+            height: 200px;
+            resize: vertical;
+            overflow: auto;
+        }
+
+        #translateBtn {
+            margin-top: 10px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 1920px) {
+            #inputBox, #outputBox {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">Enc-Chor</h1>
+    <h2 id="subtitle">Encryption dictionary by Macchiato</h2>
+
+    <div id="container">
+        <textarea id="inputBox" placeholder="Enter your input"></textarea>
+        <button id="translateBtn">Translate</button>
+        <textarea id="outputBox" placeholder="Output will appear here" readonly></textarea>
+    </div>
+
+    <script>
+        // Your encryption algorithm logic goes here
+        function encrypt(text) {
+            var encryptedText = '';
+            for (var i = 0; i < text.length; i++) {
+                var char = text.charAt(i);
+                var encryptedChar = charToEncrypted(char);
+                encryptedText += encryptedChar;
+            }
+            return encryptedText;
+        }
+
+        function charToEncrypted(char) {
+            var rules = {
+                'A': '1ca',
+                'B': '1lb',
+                'C': '1ac',
+                'D': '1kd',
+                'E': '1de',
+                'F': '1cf',
+                'G': '1ug',
+                'H': '2ch',
+                'I': '2ci',
+                'J': '2ua',
+                'K': '2ea-2',
+                'L': '2ub',
+                'M': '2oc-2',
+                'N': '2ec-2',
+                'O': '3af-1',
+                'P': '3kg',
+                'Q': '3kh',
+                'R': '3ui',
+                'S': '3ba',
+                'T': '3vx',
+                'U': '3vb',
+                'V': '4vb',
+                'W': '4pc-2',
+                'X': '4pd-2',
+                'Y': '4fe-2',
+                'Z': '4ff-2',
+                'a': '10ca',
+                'b': '10lb',
+                'c': '10ac',
+                'd': '10kd',
+                'e': '10de',
+                'f': '10cf',
+                'g': '12ug',
+                'h': '22ch',
+                'i': '22ci',
+                'j': '22ua',
+                'k': '22ea-2',
+                'l': '22ub',
+                'm': '23oc-2',
+                'n': '23ec-2',
+                'o': '33af-1',
+                'p': '33kg',
+                'q': '33kh',
+                'r': '33ui',
+                's': '34ba',
+                't': '34vx',
+                'u': '34vb',
+                'v': '44vb',
+                'w': '44pc-2',
+                'x': '44pd-2',
+                'y': '45fe-2',
+                'z': '45ff-2',
+                '.': '45aa',
+                ',': '45bb',
+                '1': 'n01',
+                '2': 'n02',
+                '3': 'n03',
+                '4': 'n04',
+                '5': 'n05',
+                '6': 'n06',
+                '7': 'n07',
+                '8': 'n08',
+                '9': 'n09',
+                ' ': '45cc' // Translate spacebar to "45cc"
+                // Add more rules for other characters
+            };
+
+            var encryptedChar = rules[char] || char;
+            return encryptedChar;
+        }
+
+        function translate() {
+            var inputText = document.getElementById("inputBox").value;
+            var encryptedText = encrypt(inputText);
+            document.getElementById("outputBox").value = encryptedText;
+        }
+
+        // Listen for translate button click
+        document.getElementById("translateBtn").addEventListener("click", translate);
+    </script>
+</body>
+</html>
