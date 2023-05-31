@@ -2,55 +2,21 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        #title {
-            font-size: 64px;
-            margin-bottom: 1.5em;
-        }
-
-        #container {
-            display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 1.5em;
-        }
-
-        #inputBox, #outputBox {
-            width: 50%;
-            height: 200px;
-            resize: vertical;
-            overflow: auto;
-        }
-
-        #translateBtn {
-            margin-top: 10px;
-            align-items: center;
-            justify-content: center;
-        }
-
-        @media (max-width: 1920px) {
-            #inputBox, #outputBox {
-                width: 100%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <h1 id="title">Enc-Chor</h1>
     <h2 id="subtitle">Encryption dictionary by Macchiato</h2>
+    <h2 id="subtitle-border">Stage 1</h2>
 
     <div id="container">
         <textarea id="inputBox" placeholder="Enter your input"></textarea>
         <button id="translateBtn">Translate</button>
         <textarea id="outputBox" placeholder="Output will appear here" readonly></textarea>
+    </div>
+    <div id="noteContainer">
+        <div id="adminNote" contenteditable="false">Admin Note</div>
+        <div id="participantNote" contenteditable="true">Participant Note</div>
     </div>
 
     <script>
