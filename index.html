@@ -56,16 +56,14 @@
     <script>
         // Your encryption algorithm logic goes here
         function encrypt(text) {
-            var encryptedText = '';
-            for (var i = 0; i < text.length; i++) {
-                var char = text.charAt(i);
-                var encryptedChar = charToEncrypted(char);
-                encryptedText += encryptedChar;
-            }
-            return encryptedText;
+            var words = text.split(' ');
+            var encryptedWords = words.map(function(word) {
+                return wordToEncrypted(word);
+            });
+            return encryptedWords.join(' ');
         }
 
-        function charToEncrypted(char) {
+        function wordToEncrypted(word) {
             var rules = {
                 '1ca': '13a',
                 '1lb': '112b',
